@@ -1,0 +1,12 @@
+import http.client
+
+conn = http.client.HTTPSConnection('circleci.com')
+
+headers = { 'Circle-Token': 'CIRCLE_TOKEN' }
+
+conn.request('GET', 'https://api.weatherbit.io/v2.0/current?lat=40.730610&lon=-73.935242&key=a533d5c513a7485c8a3dfd1d27a1f4fb?owner-id=62f61a4775c3005118ec15e0b8b299bd215d920a&page-token=NEXT_PAGE_TOKEN', headers=headers)
+
+res = conn.getresponse()
+data = res.read()
+
+print(data.decode('utf-8'))
